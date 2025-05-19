@@ -10,6 +10,9 @@ import CurrencyValue from "ui/shared/CurrencyValue";
 import * as DetailsInfoItem from "ui/shared/DetailsInfoItem";
 import IconSvg from "ui/shared/IconSvg";
 import TxFee from "ui/shared/tx/TxFee";
+import AddressLink from "ui/shared/address/AddressLink";
+import CopyToClipboard from "ui/shared/CopyToClipboard";
+import { Flex } from "@chakra-ui/react";
 
 const rollupFeature = config.features.rollup;
 
@@ -53,23 +56,28 @@ const TxDetailsBurntFees = ({ data, isLoading }: Props) => {
       >
         Burnt fees
       </DetailsInfoItem.Label>
-      <TxFee tx={data} isLoading={isLoading} withUsd />
-      {/* <DetailsInfoItem.Value>
+      <Flex alignItems={"center"} gap={2}>
         <IconSvg
           name="flame"
           boxSize={5}
           color="gray.500"
           isLoading={isLoading}
         />
-        <CurrencyValue
-          value={value.toString()}
-          currency={currencyUnits.ether}
-          exchangeRate={data.exchange_rate}
-          flexWrap="wrap"
-          ml={2}
-          isLoading={isLoading}
-        />
-      </DetailsInfoItem.Value> */}
+
+        <TxFee tx={data} isLoading={isLoading} withUsd />
+        <p>to</p>
+
+        <DetailsInfoItem.Value>
+          <AddressLink
+            type="address"
+            ml={2}
+            hash="0x0000000000000000000000000000000000000000"
+            truncation="constant"
+            maxW="100%"
+          />
+          <CopyToClipboard text="0x0000000000000000000000000000000000000000" />
+        </DetailsInfoItem.Value>
+      </Flex>
     </>
   );
 };

@@ -19,6 +19,7 @@ import { COLOR_THEMES } from "lib/settings/colorTheme";
 import * as features from "./features";
 import * as views from "./ui/views";
 import { getEnvValue, getExternalAssetFilePath, parseEnvJson } from "./utils";
+import { TAN_NETWORKS } from "public/assets/configs/netFile";
 
 const hiddenLinks = (() => {
   const parsedValue =

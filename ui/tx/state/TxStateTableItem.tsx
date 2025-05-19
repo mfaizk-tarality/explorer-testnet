@@ -1,11 +1,11 @@
-import { Tr, Td, Box } from '@chakra-ui/react';
-import React from 'react';
+import { Tr, Td, Box } from "@chakra-ui/react";
+import React from "react";
 
-import type { TxStateChange } from 'types/api/txStateChanges';
+import type { TxStateChange } from "types/api/txStateChanges";
 
-import AddressEntity from 'ui/shared/entities/address/AddressEntity';
+import AddressEntity from "ui/shared/entities/address/AddressEntity";
 
-import { getStateElements } from './utils';
+import { getStateElements } from "./utils";
 
 interface Props {
   data: TxStateChange;
@@ -13,28 +13,35 @@ interface Props {
 }
 
 const TxStateTableItem = ({ data, isLoading }: Props) => {
-  const { before, after, change, tag, tokenId } = getStateElements(data, isLoading);
+  const { before, after, change, tag, tokenId } = getStateElements(
+    data,
+    isLoading
+  );
 
   return (
     <Tr>
       <Td>
-        <Box py="3px">
-          { tag }
-        </Box>
+        <Box py="3px">{tag}</Box>
       </Td>
       <Td>
         <AddressEntity
-          address={ data.address }
-          isLoading={ isLoading }
+          address={data.address}
+          isLoading={isLoading}
           truncation="constant"
           my="7px"
           w="100%"
         />
       </Td>
-      <Td isNumeric><Box py="7px">{ before }</Box></Td>
-      <Td isNumeric><Box py="7px">{ after }</Box></Td>
-      <Td isNumeric><Box py="7px">{ change }</Box></Td>
-      <Td>{ tokenId }</Td>
+      <Td isNumeric>
+        <Box py="7px">{before}</Box>
+      </Td>
+      <Td isNumeric>
+        <Box py="7px">{tag ? before : after}</Box>
+      </Td>
+      <Td isNumeric>
+        <Box py="7px">{tag ? 0 : change}</Box>
+      </Td>
+      <Td>{tokenId}</Td>
     </Tr>
   );
 };

@@ -474,27 +474,24 @@ const BlockDetails = ({ query }: Props) => {
           </>
         )}
 
-      {!rollupFeature.isEnabled &&
-        !totalReward.isEqualTo(ZERO) &&
-        !config.UI.views.block.hiddenFields?.total_reward && (
-          <>
-            <DetailsInfoItem.Label
-              hint={`For each block, the ${validatorTitle} is rewarded with a finite amount of ${
-                config.chain.currency.symbol || "native token"
-              } 
+      <>
+        <DetailsInfoItem.Label
+          hint={`For each block, the ${validatorTitle} is rewarded with a finite amount of ${
+            config.chain.currency.symbol || "native token"
+          } 
           on top of the fees paid for all transactions in the block`}
-              isLoading={isPlaceholderData}
-            >
-              Block reward
-            </DetailsInfoItem.Label>
-            <DetailsInfoItem.Value columnGap={1}>
-              <Skeleton isLoaded={!isPlaceholderData}>
-                {totalReward.dividedBy(WEI).toFixed()} {currencyUnits.ether}
-              </Skeleton>
-              {rewardBreakDown}
-            </DetailsInfoItem.Value>
-          </>
-        )}
+          isLoading={isPlaceholderData}
+        >
+          Block reward
+        </DetailsInfoItem.Label>
+        <DetailsInfoItem.Value columnGap={1}>
+          <Skeleton isLoaded={!isPlaceholderData}>
+            {BigNumber(blockData?.BlockReward).dividedBy(WEI).toFixed()}{" "}
+            {currencyUnits.ether}
+          </Skeleton>
+          {rewardBreakDown}
+        </DetailsInfoItem.Value>
+      </>
 
       {data.rewards
         ?.filter(
