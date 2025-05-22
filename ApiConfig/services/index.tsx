@@ -1,57 +1,39 @@
-import axios, {
-  AxiosHeaders,
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-} from "axios";
+import axios from "axios";
+import Apiconfigs from "../ApiConfig";
 
-export const url: string = "https://apikyctestnet.tanscan.com/api/v1";
+// import CryptoJS from "crypto-js";
 
-export const api: AxiosInstance = axios.create({
-  baseURL: url,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
-api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-  // try {
-
-  //   if (token) {
-  //     if (config.headers instanceof AxiosHeaders) {
-  //     } else {
-  //       config.headers = new AxiosHeaders({
-  //         token: token,
-  //         deviceType: Platform.OS,
-  //       });
-  //     }
-  //   }
-  // } catch (error) {
-  //   console.error("Error retrieving access token:", error);
-  // }
-
-  return config;
-});
-
-// api.interceptors.response.use(
-//   (response: AxiosResponse) => response,
-//   (error) => {
-//     if (error?.response?.data?.responseCode == 440) {
-//       ToastAndroid.show(
-//         error?.response?.data?.responseMessage,
-//         ToastAndroid.SHORT
-//       );
-//       AsyncStorage.removeItem("access_token");
-//       TokenService.setToken(null);
-//       if (router.canGoBack()) {
-//         router.dismissAll();
-//         router.replace("/auth/login-screen");
-//       } else {
-//         router.replace("/auth/login-screen");
-//       }
-//     }
-
-//     return Promise.reject(error);
-//   }
-// );
+export const apiRouterCall = async ({
+  method,
+  id,
+  endPoint,
+  data,
+  params,
+  token,
+  source,
+  url,
+  multId,
+  multId2,
+}) => {
+  try {
+    return axios({
+      method: method,
+      url: url
+        ? url
+        : id
+        ? `${Apiconfigs[endPoint]}/${id}`
+        : multId
+        ? `${Apiconfigs[endPoint]}/${multId}/${multId2}`
+        : Apiconfigs[endPoint],
+      headers: {
+        token: token ? token : window.sessionStorage.getItem("explorerToken"),
+      },
+      data: data ? data : null,
+      params: params ? params : null,
+      cancelToken: source ? source.token : null,
+    });
+  } catch (error) {
+    console.log(error);
+    return error.response;
+  }
+};

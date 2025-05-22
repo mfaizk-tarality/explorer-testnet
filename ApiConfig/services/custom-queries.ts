@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { api } from ".";
+import Apiconfigs from "../ApiConfig";
 
 export const getDbTokenInfo = ({ contractAddress }) => {
   return useQuery({
     queryKey: ["token", contractAddress],
     queryFn: async () => {
-      const res = await api({
-        url: "/creator/getApprovedCreator",
+      const res = await axios({
+        url: Apiconfigs.getApprovedCreator,
         params: { contractAddress: contractAddress },
         method: "GET",
       });

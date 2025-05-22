@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import type { Transaction } from 'types/api/transaction';
+import type { Transaction } from "types/api/transaction";
 
-import type { StatusTagType } from './StatusTag';
-import StatusTag from './StatusTag';
+import type { StatusTagType } from "./StatusTag";
+import StatusTag from "./StatusTag";
 
 export interface Props {
-  status: Transaction['status'];
+  status: Transaction["status"];
   errorText?: string | null;
   isLoading?: boolean;
 }
@@ -20,21 +20,28 @@ const TxStatus = ({ status, errorText, isLoading }: Props) => {
   let type: StatusTagType;
 
   switch (status) {
-    case 'ok':
-      text = 'Success';
-      type = 'ok';
+    case "ok":
+      text = "Success";
+      type = "ok";
       break;
-    case 'error':
-      text = 'Failed';
-      type = 'error';
+    case "error":
+      text = "Failed";
+      type = "error";
       break;
     case null:
-      text = 'Pending';
-      type = 'pending';
+      text = "Pending";
+      type = "pending";
       break;
   }
 
-  return <StatusTag type={ type } text={ text } errorText={ errorText } isLoading={ isLoading }/>;
+  return (
+    <StatusTag
+      type={type}
+      text={text}
+      errorText={errorText}
+      isLoading={isLoading}
+    />
+  );
 };
 
 export default TxStatus;

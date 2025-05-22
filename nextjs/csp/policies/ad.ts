@@ -1,65 +1,67 @@
-import Base64 from 'crypto-js/enc-base64';
-import sha256 from 'crypto-js/sha256';
-import type CspDev from 'csp-dev';
+import Base64 from "crypto-js/enc-base64";
+import sha256 from "crypto-js/sha256";
+import type CspDev from "csp-dev";
 
-import { connectAdbutler, placeAd } from 'ui/shared/ad/adbutlerScript';
-import { hypeInit } from 'ui/shared/ad/hypeBannerScript';
+import { connectAdbutler, placeAd } from "ui/shared/ad/adbutlerScript";
+import { hypeInit } from "ui/shared/ad/hypeBannerScript";
 
 export function ad(): CspDev.DirectiveDescriptor {
   return {
-    'connect-src': [
+    "connect-src": [
+      "https://apikyctestnet.tanscan.com",
+      "http://172.16.16.206:8007",
       // coinzilla
-      'coinzilla.com',
-      '*.coinzilla.com',
-      'https://request-global.czilladx.com',
+      "coinzilla.com",
+      "*.coinzilla.com",
+      "https://request-global.czilladx.com",
 
       // adbutler
-      'servedbyadbutler.com',
+      "servedbyadbutler.com",
 
       // slise
-      '*.slise.xyz',
+      "*.slise.xyz",
 
       // hype
-      'api.hypelab.com',
-      '*.ixncdn.com',
-      '*.cloudfront.net',
+      "api.hypelab.com",
+      "*.ixncdn.com",
+      "*.cloudfront.net",
 
       //getit
-      'v1.getittech.io',
-      'ipapi.co',
+      "v1.getittech.io",
+      "ipapi.co",
     ],
-    'frame-src': [
+    "frame-src": [
       // coinzilla
-      'https://request-global.czilladx.com',
+      "https://request-global.czilladx.com",
     ],
-    'script-src': [
+    "script-src": [
       // coinzilla
-      'coinzillatag.com',
+      "coinzillatag.com",
 
       // adbutler
-      'servedbyadbutler.com',
-      `'sha256-${ Base64.stringify(sha256(connectAdbutler)) }'`,
-      `'sha256-${ Base64.stringify(sha256(placeAd(undefined) ?? '')) }'`,
-      `'sha256-${ Base64.stringify(sha256(placeAd('mobile') ?? '')) }'`,
+      "servedbyadbutler.com",
+      `'sha256-${Base64.stringify(sha256(connectAdbutler))}'`,
+      `'sha256-${Base64.stringify(sha256(placeAd(undefined) ?? ""))}'`,
+      `'sha256-${Base64.stringify(sha256(placeAd("mobile") ?? ""))}'`,
 
       // slise
-      '*.slise.xyz',
+      "*.slise.xyz",
 
       //hype
-      `'sha256-${ Base64.stringify(sha256(hypeInit ?? '')) }'`,
-      'https://api.hypelab.com',
-      'd1q98dzwj6s2rb.cloudfront.net',
+      `'sha256-${Base64.stringify(sha256(hypeInit ?? ""))}'`,
+      "https://api.hypelab.com",
+      "d1q98dzwj6s2rb.cloudfront.net",
     ],
-    'img-src': [
+    "img-src": [
       // coinzilla
-      'cdn.coinzilla.io',
+      "cdn.coinzilla.io",
 
       // adbutler
-      'servedbyadbutler.com',
+      "servedbyadbutler.com",
     ],
-    'font-src': [
+    "font-src": [
       // coinzilla
-      'https://request-global.czilladx.com',
+      "https://request-global.czilladx.com",
     ],
   };
 }

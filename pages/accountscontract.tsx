@@ -1,0 +1,36 @@
+import type { NextPage } from "next";
+import dynamic from "next/dynamic";
+import Head from "next/head";
+import React from "react";
+
+import getNetworkTitle from "lib/networks/getNetworkTitle";
+import { Box, Flex, Grid, useColorModeValue } from "@chakra-ui/react";
+import Sidebar from "./components/SideBar";
+import ContractTablePage from "./components/ContractTablePage";
+
+const AccountPage: NextPage = () => {
+  const title = `Contarct - ${getNetworkTitle()}`;
+
+  return (
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+
+      <Grid
+        templateColumns={{ base: "1fr", lg: "2fr  10fr" }}
+        className="h-screen"
+      >
+        <Sidebar />
+
+        <Box style={{ borderRadius: "10px" }} className="flex-1 p-4">
+          <ContractTablePage />
+        </Box>
+      </Grid>
+    </>
+  );
+};
+
+export default AccountPage;
+
+export { getServerSideProps } from "lib/next/getServerSideProps";

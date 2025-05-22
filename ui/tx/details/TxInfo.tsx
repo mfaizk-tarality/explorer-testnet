@@ -252,11 +252,23 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
           : "Status and method"}
       </DetailsInfoItem.Label>
       <DetailsInfoItem.Value>
-        <TxStatus
-          status={data.status}
-          errorText={data.status === "error" ? data.result : undefined}
-          isLoading={isLoading}
-        />
+        <Flex gap={4}>
+          {data.status === "error" ? (
+            <StatusTag
+              type={"error"}
+              text={`Fail with error '${data?.revert_reason?.parameters?.[0]?.value}'`}
+              errorText={`Failed with error ${data?.revert_reason?.parameters?.[0]?.value}`}
+              isLoading={isLoading}
+            />
+          ) : (
+            <TxStatus
+              status={data.status}
+              errorText={data.result}
+              isLoading={isLoading}
+            />
+          )}
+        </Flex>
+
         {data.method && (
           <Tag
             colorScheme={data.method === "Multicall" ? "teal" : "gray"}
