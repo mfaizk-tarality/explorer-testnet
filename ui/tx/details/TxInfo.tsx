@@ -252,7 +252,7 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
           : "Status and method"}
       </DetailsInfoItem.Label>
       <DetailsInfoItem.Value>
-        <Flex gap={4}>
+        {/* <Flex gap={4}>
           {data.status === "error" ? (
             <StatusTag
               type={"error"}
@@ -267,8 +267,12 @@ const TxInfo = ({ data, isLoading, socketStatus }: Props) => {
               isLoading={isLoading}
             />
           )}
-        </Flex>
-
+        </Flex> */}
+        <TxStatus
+          status={data.status}
+          errorText={data.result}
+          isLoading={isLoading}
+        />
         {data.method && (
           <Tag
             colorScheme={data.method === "Multicall" ? "teal" : "gray"}

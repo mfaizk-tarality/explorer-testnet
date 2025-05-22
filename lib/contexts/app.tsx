@@ -1,3 +1,4 @@
+"use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import type { Props as PageProps } from "lib/next/getServerSideProps";
 import { apiRouterCall } from "ApiConfig/services";

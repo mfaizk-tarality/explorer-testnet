@@ -8,8 +8,6 @@ import { Box, Flex, Grid, useColorModeValue } from "@chakra-ui/react";
 import Sidebar from "./components/SideBar";
 import PersonalInfo from "./components/PersonalInfo";
 
-const Signup = dynamic(() => import("ui/pages/SignupPage"), { ssr: false });
-
 const AccountPage: NextPage = () => {
   const title = `Accounts - ${getNetworkTitle()}`;
   return (

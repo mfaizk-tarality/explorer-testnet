@@ -43,7 +43,11 @@ const Sidebar = () => {
     // { icon: FaList, label: 'Watch List', path: '/accountswatchlist' },
     // { icon: FaTags, label: 'Private Name Tags', path: '/privatetags' },
     // { icon: TbNotes, label: 'Txn Private Notes', path: '/txnnotes' },
-    { icon: TbNotes, label: "Verify Token", path: "/accountscreatetoken" },
+    {
+      icon: TbNotes,
+      label: "Verify Token",
+      path: "/accountscreatetoken",
+    },
   ];
 
   const SidebarContent = () => (
