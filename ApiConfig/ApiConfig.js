@@ -1,6 +1,6 @@
 //UAT LOCAL
-// export const baseurl = "https://apikyctestnet.tanscan.com/api/v1";
-export const baseurl = "http://172.16.16.206:8007/api/v1";
+export const baseurl = "https://apikyctestnet.tanscan.com/api/v1";
+// export const baseurl = "http://172.16.16.206:8007/api/v1";
 const Apiconfigs = {
   signupUser: `${baseurl}/user/signupUser`,
   verifyOtp: `${baseurl}/user/verifyOtp`,
