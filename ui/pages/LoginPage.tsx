@@ -51,7 +51,7 @@ const LoginPage = ({ setCheckType }) => {
       }));
       handleAutoLogin(username, password);
     }
-  }, [localStorage.getItem("rememberedUser")]);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
